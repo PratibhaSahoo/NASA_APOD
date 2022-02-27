@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name"> Astronomy Picture of the Day </string>
+    <string name="add_to_favorite">Add To Favorite</string>
+    <string name="apod_image">APOD Image</string>
+</resources>
