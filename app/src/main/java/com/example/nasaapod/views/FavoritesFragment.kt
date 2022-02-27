@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.nasaapod.R
 import com.example.nasaapod.database.roomDB.ApodRoomDatabase
 import com.example.nasaapod.databinding.FragmentFavoritesBinding
@@ -50,6 +52,12 @@ class FavoritesFragment : Fragment(), FavoriteRecyclerAdapter.OnItemClickListene
                     text = getString(R.string.empty_favorite_message)
                 }
             }
+            fragmentFavoritesBinding.favoriteRecyclerview.addItemDecoration(
+                DividerItemDecoration(
+                    fragmentFavoritesBinding.favoriteRecyclerview.context,
+                    (fragmentFavoritesBinding.favoriteRecyclerview.layoutManager as LinearLayoutManager).orientation
+                )
+            )
             favoriteRecyclerAdapter =
                 FavoriteRecyclerAdapter(it, requireActivity().applicationContext, this)
             fragmentFavoritesBinding.favoriteRecyclerview.adapter = favoriteRecyclerAdapter

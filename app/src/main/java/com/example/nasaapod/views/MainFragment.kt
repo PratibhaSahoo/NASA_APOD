@@ -52,9 +52,15 @@ class MainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initUI(view)
+        initObservers(view)
+
+    }
+
+    private fun initUI(view: View) {
         navController = Navigation.findNavController(view)
-        Log.d("APOD : ", "default : $args.date")
-        if(args.date == "default") {
+
+        if (args.date == "default") {
             val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd")
             val todayDate = simpleDateFormat.format(Date())
             date = todayDate.toString()
@@ -70,7 +76,9 @@ class MainFragment : Fragment() {
 
         viewModelFactory = ApodViewModelFactory(date, apodRepository)
         apodViewModel = ViewModelProvider(this, viewModelFactory).get(ApodViewModel::class.java)
+    }
 
+    private fun initObservers(view: View) {
 
         apodViewModel.apodLivedata.observe(viewLifecycleOwner) {
             if (it.body()!!.media_type == "image") {
@@ -79,7 +87,7 @@ class MainFragment : Fragment() {
                 Glide.with(this)
                     .load(it.body()!!.hdurl)
                     .thumbnail(
-                        Glide.with(requireActivity()).load(R.drawable.ic_launcher_background)
+                        Glide.with(requireActivity()).load(R.drawable.ic_loading)
                     )
                     .apply(requestOptions)
                     .fitCenter()
@@ -117,7 +125,6 @@ class MainFragment : Fragment() {
                 }
             }
         }
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
