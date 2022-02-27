@@ -3,4 +3,5 @@
     <string name="add_to_favorite">Add To Favorite</string>
     <string name="apod_image">APOD Image</string>
     <string name="empty_favorite_message">You haven\'t marked anything favorite yet!!</string>
+    <string name="added_to_favorites">Added to Favorites!!</string>
 </resources>

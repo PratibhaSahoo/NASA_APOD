@@ -121,7 +121,7 @@ class MainFragment : Fragment() {
                 explanation.text = it.body()!!.explanation
                 addToFavorites.setOnClickListener {
                     apodViewModel.insertFavorite(favorites)
-                    Snackbar.make(view, "Added to Favorites!!", Snackbar.LENGTH_SHORT).show()
+                    Snackbar.make(view, getString(R.string.added_to_favorites), Snackbar.LENGTH_SHORT).show()
                 }
             }
         }
