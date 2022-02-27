@@ -22,7 +22,7 @@
         <argument
             android:name="date"
             app:argType="string"
-            android:defaultValue="2022-02-25"/>
+            android:defaultValue="default"/>
         <action
             android:id="@+id/action_mainFragment_to_favoritesFragment"
             app:destination="@id/favoritesFragment" />

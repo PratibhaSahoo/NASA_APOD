@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:id="@+id/favorite_recyclerview_item">
 
     <ImageView
         android:id="@+id/favorite_image"
@@ -12,29 +13,30 @@
         android:src="@drawable/ic_favorite"/>
 
     <LinearLayout
+        android:id="@+id/linear_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:weightSum="2"
         android:layout_toEndOf="@+id/favorite_image"
         android:orientation="vertical"
         android:paddingStart="8dp"
-        android:paddingTop="8dp">
+        android:paddingTop="8dp"
+        android:weightSum="2">
 
-    <TextView
-        android:id="@+id/favorite_date"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:gravity="center_vertical"
-        android:text="something"
-        android:textSize="16sp"/>
+        <TextView
+            android:id="@+id/favorite_date"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="something"
+            android:textSize="16sp" />
 
-    <TextView
-        android:id="@+id/favorite_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="TextView" />
+        <TextView
+            android:id="@+id/favorite_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="TextView" />
     </LinearLayout>
 
 </RelativeLayout>

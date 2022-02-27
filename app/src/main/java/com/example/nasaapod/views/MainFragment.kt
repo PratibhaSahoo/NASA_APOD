@@ -1,6 +1,7 @@
 package com.example.nasaapod.views
 
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import android.webkit.WebChromeClient
 import android.webkit.WebSettings
@@ -22,6 +23,8 @@ import com.example.nasaapod.networkManager.RetrofitHelper
 import com.example.nasaapod.viewmodel.ApodViewModel
 import com.example.nasaapod.viewmodel.ApodViewModelFactory
 import com.google.android.material.snackbar.Snackbar
+import java.text.SimpleDateFormat
+import java.util.*
 
 class MainFragment : Fragment() {
 
@@ -32,6 +35,7 @@ class MainFragment : Fragment() {
     val args: MainFragmentArgs by navArgs()
     private lateinit var favorites: Favorites
     lateinit var apodRepository: ApodRepository
+    private lateinit var date: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         setHasOptionsMenu(true)
@@ -49,14 +53,22 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         navController = Navigation.findNavController(view)
-        fragmentMainBinding!!.toolbar.title = args.date
+        Log.d("APOD : ", "default : $args.date")
+        if(args.date == "default") {
+            val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd")
+            val todayDate = simpleDateFormat.format(Date())
+            date = todayDate.toString()
+        } else {
+            date = args.date
+        }
+        fragmentMainBinding!!.toolbar.title = date
 
         val retrofitService = RetrofitHelper.apodApi
         val apodRoomDatabase = ApodRoomDatabase.getDBInstance(requireActivity().applicationContext)
         apodRepository =
             ApodRepository(retrofitService, apodRoomDatabase, requireActivity().applicationContext)
 
-        viewModelFactory = ApodViewModelFactory(args.date, apodRepository)
+        viewModelFactory = ApodViewModelFactory(date, apodRepository)
         apodViewModel = ViewModelProvider(this, viewModelFactory).get(ApodViewModel::class.java)
 
 
