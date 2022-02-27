@@ -67,7 +67,7 @@ class MainFragment : Fragment() {
         } else {
             date = args.date
         }
-        fragmentMainBinding!!.toolbar.title = date
+        fragmentMainBinding!!.toolbar.title = getString(R.string.pic_of_day) + " | " + date
 
         val retrofitService = RetrofitHelper.apodApi
         val apodRoomDatabase = ApodRoomDatabase.getDBInstance(requireActivity().applicationContext)
@@ -93,7 +93,7 @@ class MainFragment : Fragment() {
                     .fitCenter()
                     .into(fragmentMainBinding!!.image)
                 favorites = Favorites(
-                    args.date,
+                    date,
                     it.body()!!.explanation!!,
                     it.body()!!.hdurl!!,
                     it.body()!!.title!!
@@ -110,7 +110,7 @@ class MainFragment : Fragment() {
                     }
                 }
                 favorites = Favorites(
-                    args.date,
+                    date,
                     it.body()!!.explanation!!,
                     it.body()!!.url!!,
                     it.body()!!.title!!
