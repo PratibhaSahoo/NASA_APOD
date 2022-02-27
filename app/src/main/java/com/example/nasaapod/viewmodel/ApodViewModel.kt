@@ -9,7 +9,8 @@ import com.example.nasaapod.networkManager.ApodRepository
 import kotlinx.coroutines.*
 import retrofit2.Response
 
-class ApodViewModelFactory(private val date: String, private val repository: ApodRepository) : ViewModelProvider.Factory {
+class ApodViewModelFactory(private val date: String, private val repository: ApodRepository) :
+    ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         return ApodViewModel(date, repository) as T
     }
@@ -18,15 +19,15 @@ class ApodViewModelFactory(private val date: String, private val repository: Apo
 class ApodViewModel(val date: String, val apodRepository: ApodRepository) : ViewModel() {
 
     var apodLivedata = MutableLiveData<Response<Apod>>()
-    private lateinit var response : Response<Apod>
+    private lateinit var response: Response<Apod>
 
     init {
         getApodData()
     }
 
     private fun getApodData() =
-        CoroutineScope(Dispatchers.IO).launch{
-            response = apodRepository.getApodByDate(date, "URBegYiXx26bvYXbMLYMGdbaiUgreK6q8FhGvvaQ")
+        CoroutineScope(Dispatchers.IO).launch {
+            response = apodRepository.getApodByDate(date)
             withContext(Dispatchers.Main) {
                 apodLivedata.value = response
             }

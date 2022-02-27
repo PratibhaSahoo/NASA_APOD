@@ -15,9 +15,11 @@ class ApodRepository(
     val appContext: Context
 ) {
     private var response: Response<Apod>? = null
-    suspend fun getApodByDate(date: String, apiKey: String): Response<Apod> {
+    private val API_KEY = "URBegYiXx26bvYXbMLYMGdbaiUgreK6q8FhGvvaQ"
+
+    suspend fun getApodByDate(date: String): Response<Apod> {
         if (NetworkUtil.isInternetAvailable(appContext)) {
-            response = retrofitService.getApodByDate(date, apiKey)
+            response = retrofitService.getApodByDate(date, API_KEY)
             response!!.body()?.let {
                 apodRoomDatabase.apodDao().insertApod(it)
             }
