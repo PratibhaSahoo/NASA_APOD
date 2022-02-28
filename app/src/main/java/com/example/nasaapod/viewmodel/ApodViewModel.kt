@@ -27,14 +27,24 @@ class ApodViewModel(val date: String, val apodRepository: ApodRepository) : View
 
     private fun getApodData() =
         CoroutineScope(Dispatchers.IO).launch {
-            response = apodRepository.getApodByDate(date)
-            withContext(Dispatchers.Main) {
-                apodLivedata.value = response
+            try {
+                response = apodRepository.getApodByDate(date)
+                withContext(Dispatchers.Main) {
+                    apodLivedata.value = response
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
             }
+
         }
 
     fun insertFavorite(favorites: Favorites) = CoroutineScope(Dispatchers.IO).launch {
-        apodRepository.insertFavorite(favorites)
+        try {
+            apodRepository.insertFavorite(favorites)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+
     }
 
     fun getFavoritesList() = apodRepository.getFavoritesList()

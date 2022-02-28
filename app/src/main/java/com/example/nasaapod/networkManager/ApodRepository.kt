@@ -1,12 +1,10 @@
 package com.example.nasaapod.networkManager
 
 import android.content.Context
-import android.util.Log
 import com.example.nasaapod.database.entities.Favorites
 import com.example.nasaapod.database.roomDB.ApodRoomDatabase
 import com.example.nasaapod.model.Apod
 import com.example.nasaapod.utils.NetworkUtil
-import com.google.android.material.snackbar.Snackbar
 import retrofit2.Response
 
 class ApodRepository(

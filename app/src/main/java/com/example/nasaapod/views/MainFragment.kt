@@ -1,11 +1,9 @@
 package com.example.nasaapod.views
 
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import android.webkit.WebChromeClient
 import android.webkit.WebSettings
-import android.widget.MediaController
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
