@@ -26,5 +26,5 @@ Functionalities suppported for Users :
 
 
 Screenshots for App Screen :
-![Screenshot_APOD1]<img src="https://user-images.githubusercontent.com/83055905/155932469-6f894890-1874-4b40-aded-a9300959e42c.png" width="300" height="690">
+<img src="https://user-images.githubusercontent.com/83055905/155932469-6f894890-1874-4b40-aded-a9300959e42c.png" width="300" height="690">
 
