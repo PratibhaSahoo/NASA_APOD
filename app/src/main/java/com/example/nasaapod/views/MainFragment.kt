@@ -77,13 +77,12 @@ class MainFragment : Fragment() {
     }
 
     private fun initObservers(view: View) {
-
-        apodViewModel.apodLivedata.observe(viewLifecycleOwner) {
-            if (it.body()!!.media_type == "image") {
+        apodViewModel.apodLivedata.observe(this, androidx.lifecycle.Observer {
+            if (it.media_type == "image") {
                 val requestOptions = RequestOptions()
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                 Glide.with(this)
-                    .load(it.body()!!.hdurl)
+                    .load(it.hdurl)
                     .thumbnail(
                         Glide.with(requireActivity()).load(R.drawable.ic_loading)
                     )
@@ -92,9 +91,9 @@ class MainFragment : Fragment() {
                     .into(fragmentMainBinding!!.image)
                 favorites = Favorites(
                     date,
-                    it.body()!!.explanation!!,
-                    it.body()!!.hdurl!!,
-                    it.body()!!.title!!
+                    it.explanation!!,
+                    it.hdurl!!,
+                    it.title!!
                 )
             } else {
                 fragmentMainBinding!!.apply {
@@ -103,26 +102,30 @@ class MainFragment : Fragment() {
                         visibility = View.VISIBLE
                         settings.javaScriptEnabled = true
                         settings.pluginState = WebSettings.PluginState.ON
-                        loadUrl(it.body()!!.url!!)
+                        loadUrl(it.url!!)
                         webChromeClient = WebChromeClient()
                     }
                 }
                 favorites = Favorites(
                     date,
-                    it.body()!!.explanation!!,
-                    it.body()!!.url!!,
-                    it.body()!!.title!!
+                    it.explanation!!,
+                    it.url!!,
+                    it.title!!
                 )
             }
             fragmentMainBinding!!.apply {
-                title.text = it.body()!!.title
-                explanation.text = it.body()!!.explanation
+                title.text = it.title
+                explanation.text = it.explanation
                 addToFavorites.setOnClickListener {
                     apodViewModel.insertFavorite(favorites)
-                    Snackbar.make(view, getString(R.string.added_to_favorites), Snackbar.LENGTH_SHORT).show()
+                    Snackbar.make(
+                        view,
+                        getString(R.string.added_to_favorites),
+                        Snackbar.LENGTH_SHORT
+                    ).show()
                 }
             }
-        }
+        })
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
