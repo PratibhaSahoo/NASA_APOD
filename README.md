@@ -25,5 +25,8 @@ Functionalities suppported for Users :
 5. The app can be viewed in both potrait & landscape orientation and for different screen sizes.
 
 
-<img src="https://user-images.githubusercontent.com/83055905/155932469-6f894890-1874-4b40-aded-a9300959e42c.png" width="300" height="590">
+<img src="https://user-images.githubusercontent.com/83055905/155933421-21d8d7ac-75bb-4283-8b2d-a4ac1f1cf72d.png" width="300" height="590">
+<img src="https://user-images.githubusercontent.com/83055905/155933415-a275d335-7e04-4deb-88ce-a02b1cd0bda3.png" width="300" height="590">
+<img src="https://user-images.githubusercontent.com/83055905/155933419-cc50e8dc-65f2-42de-9ce7-4af7cf7557af.png" width="300" height="590">
+<img src="https://user-images.githubusercontent.com/83055905/155933411-0f38dd54-118f-4c07-9af2-d5f322e7217c.png" width="300" height="590">
 
